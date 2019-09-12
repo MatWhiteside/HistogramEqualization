@@ -13,15 +13,18 @@ Accompanying blog post: https://ukdevguy.com/...
 """
 
 # Only two constants that need setting before running
-IN_FILE = "photos/1_modified.png"
-OUT_FILE = "photos/1_output.png"
+IN_FILE = "5_input.png"
+OUT_FILE = "5_output.png"
 
 def make_histogram(img):
-    """ Take a flattened greyscale image and create a historgram from it """
+    """ Take an image and create a historgram from it """
     histogram = np.zeros(256, dtype=int)
-    for i in range(img.size):
-        histogram[img[i]] += 1
-    return histogram
+    for row in range(img.shape[0]):
+        for column in range(img[row].shape[0]):
+            histogram[img[row][column][0]] += 1
+            histogram[img[row][column][1]] += 1
+            histogram[img[row][column][2]] += 1
+    return histogram / 3
 
 def make_cumsum(histogram):
     """ Create an array that represents the cumulative sum of the histogram """
@@ -44,9 +47,12 @@ def make_mapping(histogram, cumsum):
 
 def apply_mapping(img, mapping):
     """ Apply the mapping to our image """
-    new_image = np.zeros(img.size, dtype=int)
-    for i in range(img.size):
-        new_image[i] = mapping[img[i]]
+    new_image = np.zeros((img.shape[0], img.shape[1], 3), dtype=int)
+    for row in range(img.shape[0]):
+        for column in range(img[row].shape[0]):
+            new_image[row][column][0] = mapping[img[row][column][0]] # R
+            new_image[row][column][1] = mapping[img[row][column][1]] # G
+            new_image[row][column][2] = mapping[img[row][column][2]] # B
     return new_image
 
 # Load image, store width and height into constants
@@ -55,14 +61,17 @@ IMG_W, IMG_H = pillow_img.size
 
 # Read in and flatten our greyscale image, calculate the histogram,
 # cumulative sum, mapping and then apply the mapping to create a new image
-img = np.array(pillow_img).flatten()
+img = np.array(pillow_img)
+#print(img)
 histogram = make_histogram(img)
 cumsum = make_cumsum(histogram)
 mapping = make_mapping(histogram, cumsum)
 new_image = apply_mapping(img, mapping)
 
+print(new_image)
+
 # Save the image
-output_image = Image.fromarray(np.uint8(new_image.reshape((IMG_H, IMG_W))))
+output_image = Image.fromarray(np.uint8(new_image))
 output_image.save(OUT_FILE)
 
 # Display the old (blue) and new (orange) histograms next to eachother

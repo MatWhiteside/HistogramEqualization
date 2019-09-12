@@ -13,8 +13,8 @@ Accompanying blog post: https://ukdevguy.com/...
 """
 
 # Only two constants that need setting before running
-IN_FILE = "4_input.jpg"
-OUT_FILE = "4_output.jpg"
+IN_FILE = "photos/4_input.jpg"
+OUT_FILE = "photos/4_output.jpg"
 
 def make_histogram(img):
     """ Take an image and create a historgram from it's luma values """

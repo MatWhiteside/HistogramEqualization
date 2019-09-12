@@ -12,8 +12,8 @@ SHRINK_AMT = 4
 # Amount to compress the historgram: 0 (weak) to 1 (strong)
 STRENGTH = 0.5
 # Input image and name for the output image
-IN_FILE = "input.jpg"
-OUT_FILE = "modified.png"
+IN_FILE = "photos/1_input.jpg"
+OUT_FILE = "photos/1_modified.png"
 
 def make_greyscale(img):
     """ Convert an image to greyscale """
