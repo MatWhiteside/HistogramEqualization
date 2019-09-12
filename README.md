@@ -13,7 +13,15 @@ Image credit: https://www.instagram.com/lorrainewhiteside/
 ### 2: Old photo with no moficiations apart from histogram equalization
 ![Input image (left) vs output image (right)](https://i.imgur.com/c7BT7k4.png)
 
-## Usage Guide
+
+### 3: Colour version of cow, no other modifications
+![Input image (left) vs output image (right)](https://i.imgur.com/HkxQGP6.png)
+
+
+### 4: Colour version of dog, no other modifications
+![Input image (left) vs output image (right)](https://i.imgur.com/jRldRTk.png)
+
+## Usage Guide - Greyscale
 The `image_processor.py` class can be used to convert a colour image to greyscale, reduce the size of an image and reduce the colour range of an image. There are four constants you need to worry about:
 
 | Constant   | Description                                 | Example                                                                               |
@@ -30,4 +38,9 @@ Once our image is processed into greyscale, we can use the `equalizer_greyscale.
 | IN_FILE  | Path where the input file is located (must be greyscale image!) | "modified.png" |
 | OUT_FILE | Path where the output file should be saved                      | "output.png"   |
 
-Any questions feel free to leave a comment over on the blog post.
+## Usage Guide - Colour
+The colour version of the script, `equalizer_colour.py`, converts the input image into the YCbCr colour format. It then applies histogram equalization onto the Y channel. To use this script simply set the input and output variables in exactly the same way as the greyscale version.
+
+**Note: the output file type must be jpg.**
+
+Any questions feel free to leave a comment over at the [blog post](https://ukdevguy.com/).
