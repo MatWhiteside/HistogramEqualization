@@ -58,7 +58,7 @@ IMG_W, IMG_H = pillow_img.size
 img = np.array(pillow_img).flatten()
 histogram = make_histogram(img)
 cumsum = make_cumsum(histogram)
-mapping = make_mapping(histogram, cumsum)
+mapping = make_mapping(cumsum)
 new_image = apply_mapping(img, mapping)
 
 # Save the image
