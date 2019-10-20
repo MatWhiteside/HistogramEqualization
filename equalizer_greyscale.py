@@ -31,14 +31,14 @@ def make_cumsum(histogram):
         cumsum[i] = cumsum[i-1] + histogram[i]
     return cumsum
 
-def make_mapping(histogram, cumsum):
+def make_mapping(cumsum):
     """ Create a mapping s.t. each old colour value is mapped to a new
         one between 0 and 255. Mapping is created using:
          - M(i) = max(0, round((grey_levels*cumsum(i))/(h*w))-1)
         where g_levels is the number of grey levels in the image """
     mapping = np.zeros(256, dtype=int)
     grey_levels = 256
-    for i in range(histogram.size):
+    for i in range(grey_levels):
         mapping[i] = max(0, round((grey_levels*cumsum[i])/(IMG_H*IMG_W))-1)
     return mapping
 
